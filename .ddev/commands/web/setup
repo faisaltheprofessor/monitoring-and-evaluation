@@ -1,0 +1,69 @@
+#!/bin/bash
+
+## Description: Sets up the local development environment for the project
+## Usage: setup
+## Example: "ddev setup"
+
+echo "💻 Setting up the project"
+echo ""
+
+
+    echo "🗄️ What's the name of your database dump file inside the project root? (default: db.sql)"
+    read dumpfile
+    if [[ -z $dumpfile ]]; then
+            dumpfile="db.sql"
+    fi
+        echo ""
+
+    if [ ! -f "./$dumpfile" ]; then
+        echo "❌ Database file does not exist. "
+        exit 1
+    fi
+
+echo
+
+echo "🚀 Scaffolding"
+# ---------------------------------
+# SCAFFOLDING
+# ---------------------------------
+rm -rf ./vendor
+rm -rf ./public/storage
+rm -rf ./node_modules
+rm -rf ./.env
+cp .env.ddev .env
+
+
+composer install
+php artisan storage:link
+php artisan key:generate
+
+# ---------------------------------
+#  DATABASE
+# ---------------------------------
+echo "⏳ Start importing database dump. This may take a while!";
+import-db --file=$dumpfile
+mysql -u db -pdb --host=db db < $dumpfile
+
+echo "✅ Finished importing database dump.";
+
+php artisan migrate
+
+
+echo ""
+echo "✅ Updated!"
+echo ""
+
+# ---------------------------------
+# Assets
+# ---------------------------------
+echo ""
+echo "📦 Installing assets..."
+npm install
+
+echo ""
+echo "🔨 Compiling assets... "
+npm run dev
+
+echo ""
+echo "Start by visiting https://mis.ddev.site 🚀"
+exit 0

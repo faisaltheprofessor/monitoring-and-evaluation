@@ -1,0 +1,1 @@
+<link rel="stylesheet" href="{{ asset('theme/vendors/select2/css/select2.min.css') }}">

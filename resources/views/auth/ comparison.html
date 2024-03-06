@@ -1,0 +1,41 @@
+<script>
+    function compareDates(first_date, second_date){
+        let firstValue = first_date.split('-'),
+        secondValue = second_date.split('-'),
+        firstDate=new Date();
+
+        firstDate.setFullYear(firstValue[0],(firstValue[1] - 1 ),firstValue[2]);
+
+        let secondDate=new Date();
+        secondDate.setFullYear(secondValue[0],(secondValue[1] - 1 ),secondValue[2]);     
+
+        if (firstDate > secondDate)
+        {
+        alert("First Date  is greater than Second Date");
+        }
+        else
+        {
+            alert("Second Date  is greater than First Date");
+        }
+    } 
+    
+    compareDates("2020-17-11", "2020-16-11");
+
+
+
+
+
+
+
+
+
+    function age(dob) { 
+    var diff_ms = Date.now() - dob.getTime();
+    var age_dt = new Date(diff_ms); 
+  
+    return Math.abs(age_dt.getUTCFullYear() - 1970);
+    }
+
+
+    alert(age(new Date("1995/07/11")))
+</script>

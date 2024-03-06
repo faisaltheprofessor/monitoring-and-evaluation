@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <script>
+
+    function currentTime() {
+
+        let dt = new Date(),
+
+        today = (`${
+            dt.getFullYear().toString().padStart(4, '0')}/${
+            dt.getDate().toString().padStart(2, '0')}/${
+            (dt.getMonth()+1).toString().padStart(2, '0')} ${
+            dt.getHours().toString().padStart(2, '0')}:${
+            dt.getMinutes().toString().padStart(2, '0')}:${
+            dt.getSeconds().toString().padStart(2, '0')}`
+        );
+
+        return today;
+                
+        
+        }
+    console.log(currentTime())
+
+
+
+
+
+
+
+
+    sec
+
+    </script>
+
+
+
+<select name="country" id="country">
+    <option value="Af">Afghanistan</option>
+    <option value="USA">USA</option>
+    <option value="Germany">Germany</option>
+    <option value="UK">United Kingdom</option>
+</select>
+
+
+
+</body>
+</html>
